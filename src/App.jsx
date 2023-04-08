@@ -19,8 +19,8 @@ function App() {
         const hasItems = items.length > 0;
 
         if (hasItems) {
-          setProducts(filterProducts(items));
-          setCategories(filterCategories(items));
+          setProducts(filterItemsByEntity(items, PRODUCT_ID));
+          setCategories(filterItemsByEntity(items, CATEGORY_ID));
         }
       });
     }
@@ -32,6 +32,18 @@ function App() {
       <h1>Contentful Products</h1>
       <ProductList {...{ products }} />
     </div>
+  );
+}
+
+function filterItemsByEntity(list, entityId) {
+  return list.filter(
+    ({
+      sys: {
+        contentType: {
+          sys: { id },
+        },
+      },
+    }) => id === entityId
   );
 }
 
