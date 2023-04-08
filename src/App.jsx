@@ -47,28 +47,4 @@ function filterItemsByEntity(list, entityId) {
   );
 }
 
-function filterProducts(list) {
-  return list.filter(
-    ({
-      sys: {
-        contentType: {
-          sys: { id },
-        },
-      },
-    }) => id === PRODUCT_ID
-  );
-}
-
-function filterCategories(list) {
-  return list.filter(
-    ({
-      sys: {
-        contentType: {
-          sys: { id },
-        },
-      },
-    }) => id === CATEGORY_ID
-  );
-}
-
 export default App;
