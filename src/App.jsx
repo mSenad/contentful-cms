@@ -6,8 +6,8 @@ import { ProductList } from "./components/Products/index";
 
 import "./App.css";
 
-const CATEGORY_ID = "category";
-const PRODUCT_ID = "product";
+const CONTENT_TYPE_CATEGORY_ID = "category";
+const CONTENT_TYPE_PRODUCT_ID = "product";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -19,8 +19,10 @@ function App() {
         const hasItems = items.length > 0;
 
         if (hasItems) {
-          setProducts(filterItemsByEntity(items, PRODUCT_ID));
-          setCategories(filterItemsByEntity(items, CATEGORY_ID));
+          setProducts(filterItemsByContentType(items, CONTENT_TYPE_PRODUCT_ID));
+          setCategories(
+            filterItemsByContentType(items, CONTENT_TYPE_CATEGORY_ID)
+          );
         }
       });
     }
@@ -35,7 +37,7 @@ function App() {
   );
 }
 
-function filterItemsByEntity(list, entityId) {
+function filterItemsByContentType(list, entityId) {
   return list.filter(
     ({
       sys: {
